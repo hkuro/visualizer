@@ -20,6 +20,12 @@ all_queues = {}
 binsems = {}
 queues = {}
 
+#Add new list to store context switch cost time
+context_switch_cost_time = []
+
+#Write context switch cost time to a .txt file
+context_switch_file = open('csct.txt','w')
+
 for line in lines :
 	line = line.strip()
 	inst, args = line.split(' ', 1)
@@ -53,6 +59,15 @@ for line in lines :
 		event['task'] = in_task
 		event['time'] = in_time
 		events.append(event);
+
+		#Refer to the above code to record context switch cost time
+		cst = {}
+		cst['type'] = 'context switch cost time'
+		cst['time'] = (in_time-out_time)
+		context_switch_cost_time.append(cst);
+
+		context_switch_file .write('context switch cost time: %f seconds\n' %(cst['time']))
+
 
 		last_task = in_task
 
@@ -163,6 +178,7 @@ for line in lines :
 			events.append(event)
 			tasks[int_num]['created'] = True if dir == 'in' else False
 
+context_switch_file.close()
 log.close()
 
 grasp = open('sched.grasp', 'w')

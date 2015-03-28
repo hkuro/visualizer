@@ -273,7 +273,7 @@ int main()
 
 	xTaskCreate(new_task2,
 	            (signed portCHAR *) "task2",
-	            512 /* stack size */, NULL, tskIDLE_PRIORITY + 12, NULL);
+	            512 /* stack size */, NULL, tskIDLE_PRIORITY + 11, NULL);
 
 	/* Start running the tasks. */
 	vTaskStartScheduler();
