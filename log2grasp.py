@@ -8,8 +8,9 @@
 TRACE_QUEUE = True
 TRACE_MUTEX = True
 TRACE_BINARY_SEMAPHORE = False
-TRACE_INTERRUPT = False
+TRACE_INTERRUPT = True
 
+#Accroding to "log" to draw in Grasp
 log = open('log', 'r')
 lines = log.readlines()
 
@@ -66,7 +67,7 @@ for line in lines :
 		cst['time'] = (in_time-out_time)
 		context_switch_cost_time.append(cst);
 
-		context_switch_file .write('context switch cost time: %f seconds\n' %(cst['time']))
+		context_switch_file .write('context switch cost time: %f microseconds\n' %(cst['time']))
 
 
 		last_task = in_task
